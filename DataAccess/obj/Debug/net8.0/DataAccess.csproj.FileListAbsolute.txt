@@ -1,0 +1,15 @@
+/Users/andriisavchenko/PaperHub/DataAccess/bin/Debug/net8.0/DataAccess.deps.json
+/Users/andriisavchenko/PaperHub/DataAccess/bin/Debug/net8.0/DataAccess.dll
+/Users/andriisavchenko/PaperHub/DataAccess/bin/Debug/net8.0/DataAccess.pdb
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.csproj.AssemblyReference.cache
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfoInputs.cache
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfo.cs
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.csproj.CoreCompileInputs.cache
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.sourcelink.json
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.dll
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/refint/DataAccess.dll
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.pdb
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/ref/DataAccess.dll
+/Users/andriisavchenko/PaperHub/DataAccess/bin/Debug/net8.0/DataAccess.runtimeconfig.json
+/Users/andriisavchenko/PaperHub/DataAccess/obj/Debug/net8.0/DataAccess.genruntimeconfig.cache
