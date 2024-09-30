@@ -2,9 +2,9 @@ namespace Service;
 
 public interface IPropertyService
 {
-    List<PropertyDto> GetAllProperties();
-    PropertyDto? GetPropertyById(int id);
+    List<GetPropertyDto> GetAllProperties();
+    GetPropertyDto? GetPropertyById(int id);
     void CreateProperty(PropertyCreateDto propertyDto);
-    void UpdateProperty(int id, PropertyDto propertyDto);
+    void UpdateProperty(int id, GetPropertyDto getPropertyDto);
     void DeleteProperty(int id);
 }

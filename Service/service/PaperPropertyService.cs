@@ -13,16 +13,16 @@ public class PaperPropertyService : IPaperPropertyService
         _context = context;
     }
 
-    public List<PaperPropertyDto> GetAllPaperProperties()
+    public List<GetPaperPropertyDto> GetAllPaperProperties()
     {
         var paperProperties = _paperPropertyRepo.GetAllPaperProperties();
-        return paperProperties.Select(PaperPropertyDto.FromEntity).ToList();
+        return paperProperties.Select(GetPaperPropertyDto.FromEntity).ToList();
     }
 
-    public PaperPropertyDto? GetPaperPropertyById(int paperId, int propertyId)
+    public GetPaperPropertyDto? GetPaperPropertyById(int paperId, int propertyId)
     {
         var paperProperty = _paperPropertyRepo.GetPaperPropertyById(paperId, propertyId);
-        return paperProperty != null ? PaperPropertyDto.FromEntity(paperProperty) : null;
+        return paperProperty != null ? GetPaperPropertyDto.FromEntity(paperProperty) : null;
     }
 
     public void CreatePaperProperty(PaperPropertyCreateDto paperPropertyDto)

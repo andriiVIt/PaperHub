@@ -2,7 +2,7 @@ using DataAccess.Models;
 
 namespace Service;
 
-public class OrderDto
+public class GetOrderDto
 {
     public int Id { get; set; }
     public DateTime OrderDate { get; set; }
@@ -13,9 +13,9 @@ public class OrderDto
    
    
 
-    public static OrderDto FromEntity(Order order)
+    public static GetOrderDto FromEntity(Order order)
     {
-        return new OrderDto
+        return new GetOrderDto
         {
             Id = order.Id,
             OrderDate = order.OrderDate,
@@ -27,16 +27,16 @@ public class OrderDto
         };
     }
 
-    public static Order ToEntity(OrderDto orderDto)
+    public static Order ToEntity(GetOrderDto getOrderDto)
     {
         return new Order
         {
-            Id = orderDto.Id,
-            OrderDate = orderDto.OrderDate,
-            DeliveryDate = orderDto.DeliveryDate,
-            Status = orderDto.Status,
-            TotalAmount = orderDto.TotalAmount,
-            CustomerId = orderDto.CustomerId,
+            Id = getOrderDto.Id,
+            OrderDate = getOrderDto.OrderDate,
+            DeliveryDate = getOrderDto.DeliveryDate,
+            Status = getOrderDto.Status,
+            TotalAmount = getOrderDto.TotalAmount,
+            CustomerId = getOrderDto.CustomerId,
            
         };
     }

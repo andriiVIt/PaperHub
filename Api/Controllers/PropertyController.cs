@@ -19,14 +19,14 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<List<PropertyDto>> GetAllProperties()
+        public ActionResult<List<GetPropertyDto>> GetAllProperties()
         {
             var properties = _service.GetAllProperties();
             return Ok(properties);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PropertyDto> GetPropertyById(int id)
+        public ActionResult<GetPropertyDto> GetPropertyById(int id)
         {
             var property = _service.GetPropertyById(id);
             if (property == null)
@@ -45,9 +45,9 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProperty(int id, [FromBody] PropertyDto propertyDto)
+        public IActionResult UpdateProperty(int id, [FromBody] GetPropertyDto getPropertyDto)
         {
-            _service.UpdateProperty(id, propertyDto);
+            _service.UpdateProperty(id, getPropertyDto);
             return Ok();
         }
 

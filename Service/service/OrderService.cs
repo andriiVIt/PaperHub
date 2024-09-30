@@ -14,20 +14,20 @@ public class OrderService : IOrderService
         _context = context;
     }
 
-    public List<OrderDto> GetAllOrders(int limit, int startAt)
+    public List<GetOrderDto> GetAllOrders(int limit, int startAt)
     {
         var orders = _orderRepo.GetAllOrders();
         return orders.OrderBy(o => o.Id)
             .Skip(startAt)
             .Take(limit)
-            .Select(OrderDto.FromEntity)
+            .Select(GetOrderDto.FromEntity)
             .ToList();
     }
 
-    public OrderDto? GetOrderById(int id)
+    public GetOrderDto? GetOrderById(int id)
     {
         var order = _orderRepo.GetOrderById(id);
-        return order != null ? OrderDto.FromEntity(order) : null;
+        return order != null ? GetOrderDto.FromEntity(order) : null;
     }
 
     public void CreateOrder(OrderCreateDto orderDto)
@@ -37,15 +37,15 @@ public class OrderService : IOrderService
         _context.SaveChanges();
     }
 
-    public void UpdateOrder(int id, OrderDto orderDto)
+    public void UpdateOrder(int id, GetOrderDto getOrderDto)
     {
         var order = _context.Orders.Find(id);
         if (order != null)
         {
-            order.Status = orderDto.Status;
-            order.OrderDate = orderDto.OrderDate;
-            order.DeliveryDate = orderDto.DeliveryDate;
-            order.TotalAmount = orderDto.TotalAmount;
+            order.Status = getOrderDto.Status;
+            order.OrderDate = getOrderDto.OrderDate;
+            order.DeliveryDate = getOrderDto.DeliveryDate;
+            order.TotalAmount = getOrderDto.TotalAmount;
             _context.SaveChanges();
         }
     }

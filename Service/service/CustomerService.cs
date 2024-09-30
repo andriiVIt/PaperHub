@@ -14,20 +14,20 @@ public class CustomerService : ICustomerService
         _context = context;
     }
 
-    public List<CustomerDto> GetAllCustomers(int limit, int startAt)
+    public List<GetCustomerDto> GetAllCustomers(int limit, int startAt)
     {
         var customers = _customerRepo.GetAllCustomers();
         return customers.OrderBy(c => c.Id)
             .Skip(startAt)
             .Take(limit)
-            .Select(CustomerDto.FromEntity)
+            .Select(GetCustomerDto.FromEntity)
             .ToList();
     }
 
-    public CustomerDto? GetCustomerById(int id)
+    public GetCustomerDto? GetCustomerById(int id)
     {
         var customer = _customerRepo.GetCustomerById(id);
-        return customer != null ? CustomerDto.FromEntity(customer) : null;
+        return customer != null ? GetCustomerDto.FromEntity(customer) : null;
     }
 
     public void CreateCustomer(CustomerCreateDto customerDto)
@@ -38,15 +38,15 @@ public class CustomerService : ICustomerService
         _context.SaveChanges();
     }
 
-    public void UpdateCustomer(int id, CustomerDto customerDto)
+    public void UpdateCustomer(int id, GetCustomerDto getCustomerDto)
     {
         var customer = _context.Customers.Find(id);
         if (customer != null)
         {
-            customer.Name = customerDto.Name;
-            customer.Address = customerDto.Address;
-            customer.Phone = customerDto.Phone;
-            customer.Email = customerDto.Email;
+            customer.Name = getCustomerDto.Name;
+            customer.Address = getCustomerDto.Address;
+            customer.Phone = getCustomerDto.Phone;
+            customer.Email = getCustomerDto.Email;
             _context.SaveChanges();
         }
     }

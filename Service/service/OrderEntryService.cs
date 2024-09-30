@@ -14,16 +14,16 @@ public class OrderEntryService : IOrderEntryService
         _context = context;
     }
 
-    public List<OrderEntryDto> GetAllOrderEntries()
+    public List<GetOrderEntryDto> GetAllOrderEntries()
     {
         var orderEntries = _orderEntryRepo.GetAllOrderEntries();
-        return orderEntries.Select(OrderEntryDto.FromEntity).ToList();
+        return orderEntries.Select(GetOrderEntryDto.FromEntity).ToList();
     }
 
-    public OrderEntryDto? GetOrderEntryById(int id)
+    public GetOrderEntryDto? GetOrderEntryById(int id)
     {
         var orderEntry = _orderEntryRepo.GetOrderEntryById(id);
-        return orderEntry != null ? OrderEntryDto.FromEntity(orderEntry) : null;
+        return orderEntry != null ? GetOrderEntryDto.FromEntity(orderEntry) : null;
     }
 
     public void CreateOrderEntry(OrderEntryCreateDto orderEntryDto)
@@ -33,14 +33,14 @@ public class OrderEntryService : IOrderEntryService
         _context.SaveChanges();
     }
 
-    public void UpdateOrderEntry(int id, OrderEntryDto orderEntryDto)
+    public void UpdateOrderEntry(int id, GetOrderEntryDto getOrderEntryDto)
     {
         var orderEntry = _context.OrderEntries.Find(id);
         if (orderEntry != null)
         {
-            orderEntry.Quantity = orderEntryDto.Quantity;
-            orderEntry.ProductId = orderEntryDto.ProductId;
-            orderEntry.OrderId = orderEntryDto.OrderId;
+            orderEntry.Quantity = getOrderEntryDto.Quantity;
+            orderEntry.ProductId = getOrderEntryDto.ProductId;
+            orderEntry.OrderId = getOrderEntryDto.OrderId;
             _context.SaveChanges();
         }
     }

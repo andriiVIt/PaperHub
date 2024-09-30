@@ -4,9 +4,9 @@ namespace Service;
 
 public interface IPaperService
 {
-    List<PaperDto> GetAllPapers(int limit, int startAt);
-    PaperDto? GetPaperById(int id);
+    List<GetPaperDto> GetAllPapers(int limit, int startAt);
+    GetPaperDto? GetPaperById(int id);
     void CreatePaper(PaperCreateDto paperDto);
-    void UpdatePaper(int id, PaperDto paperDto);
+    void UpdatePaper(int id, GetPaperDto getPaperDto);
     void DeletePaper(int id);
 }

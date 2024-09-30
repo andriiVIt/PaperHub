@@ -19,14 +19,14 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<List<PaperDto>> GetAllPapers(int limit = 10, int startAt = 0)
+        public ActionResult<List<GetPaperDto>> GetAllPapers(int limit = 10, int startAt = 0)
         {
             var papers = _service.GetAllPapers(limit, startAt);
             return Ok(papers);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PaperDto> GetPaperById(int id)
+        public ActionResult<GetPaperDto> GetPaperById(int id)
         {
             var paper = _service.GetPaperById(id);
             if (paper == null)
@@ -45,9 +45,9 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePaper(int id, [FromBody] PaperDto paperDto)
+        public IActionResult UpdatePaper(int id, [FromBody] GetPaperDto getPaperDto)
         {
-            _service.UpdatePaper(id, paperDto);
+            _service.UpdatePaper(id, getPaperDto);
             return Ok();
         }
 

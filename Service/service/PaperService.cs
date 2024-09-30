@@ -14,20 +14,20 @@ public class PaperService : IPaperService
         _context = context;
     }
 
-    public List<PaperDto> GetAllPapers(int limit, int startAt)
+    public List<GetPaperDto> GetAllPapers(int limit, int startAt)
     {
         var papers = _paperRepo.GetAllPapers();
         return papers.OrderBy(p => p.Id)
             .Skip(startAt)
             .Take(limit)
-            .Select(PaperDto.FromEntity)
+            .Select(GetPaperDto.FromEntity)
             .ToList();
     }
 
-    public PaperDto? GetPaperById(int id)
+    public GetPaperDto? GetPaperById(int id)
     {
         var paper = _paperRepo.GetPaperById(id);
-        return paper != null ? PaperDto.FromEntity(paper) : null;
+        return paper != null ? GetPaperDto.FromEntity(paper) : null;
     }
 
     public void CreatePaper(PaperCreateDto paperDto)
@@ -37,14 +37,14 @@ public class PaperService : IPaperService
         _context.SaveChanges();
     }
 
-    public void UpdatePaper(int id, PaperDto paperDto)
+    public void UpdatePaper(int id, GetPaperDto getPaperDto)
     {
         var paper = _context.Papers.Find(id);
         if (paper != null)
         {
-            paper.Name = paperDto.Name;
-            paper.Price = paperDto.Price;
-            paper.Discontinued = paperDto.Discontinued;
+            paper.Name = getPaperDto.Name;
+            paper.Price = getPaperDto.Price;
+            paper.Discontinued = getPaperDto.Discontinued;
             _context.SaveChanges();
         }
     }

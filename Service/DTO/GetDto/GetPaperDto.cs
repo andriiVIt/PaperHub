@@ -2,16 +2,16 @@ using DataAccess.Models;
 
 namespace Service;
 
-public class PaperDto
+public class GetPaperDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
     public double Price { get; set; }
     public bool Discontinued { get; set; }
 
-    public static PaperDto FromEntity(Paper paper)
+    public static GetPaperDto FromEntity(Paper paper)
     {
-        return new PaperDto
+        return new GetPaperDto
         {
             Id = paper.Id,
             Name = paper.Name,
@@ -20,14 +20,14 @@ public class PaperDto
         };
     }
 
-    public static Paper ToEntity(PaperDto paperDto)
+    public static Paper ToEntity(GetPaperDto getPaperDto)
     {
         return new Paper
         {
-            Id = paperDto.Id,
-            Name = paperDto.Name,
-            Price = paperDto.Price,
-            Discontinued = paperDto.Discontinued
+            Id = getPaperDto.Id,
+            Name = getPaperDto.Name,
+            Price = getPaperDto.Price,
+            Discontinued = getPaperDto.Discontinued
         };
     }
 }

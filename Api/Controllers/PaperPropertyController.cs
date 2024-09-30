@@ -19,14 +19,14 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<List<PaperPropertyDto>> GetAllPaperProperties()
+        public ActionResult<List<GetPaperPropertyDto>> GetAllPaperProperties()
         {
             var paperProperties = _service.GetAllPaperProperties();
             return Ok(paperProperties);
         }
 
         [HttpGet("{paperId}/{propertyId}")]
-        public ActionResult<PaperPropertyDto> GetPaperPropertyById(int paperId, int propertyId)
+        public ActionResult<GetPaperPropertyDto> GetPaperPropertyById(int paperId, int propertyId)
         {
             var paperProperty = _service.GetPaperPropertyById(paperId, propertyId);
             if (paperProperty == null)

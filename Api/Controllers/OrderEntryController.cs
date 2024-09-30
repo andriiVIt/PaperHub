@@ -19,14 +19,14 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public ActionResult<List<OrderEntryDto>> GetAllOrderEntries()
+        public ActionResult<List<GetOrderEntryDto>> GetAllOrderEntries()
         {
             var orderEntries = _service.GetAllOrderEntries();
             return Ok(orderEntries);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<OrderEntryDto> GetOrderEntryById(int id)
+        public ActionResult<GetOrderEntryDto> GetOrderEntryById(int id)
         {
             var orderEntry = _service.GetOrderEntryById(id);
             if (orderEntry == null)
@@ -45,9 +45,9 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateOrderEntry(int id, [FromBody] OrderEntryDto orderEntryDto)
+        public IActionResult UpdateOrderEntry(int id, [FromBody] GetOrderEntryDto getOrderEntryDto)
         {
-            _service.UpdateOrderEntry(id, orderEntryDto);
+            _service.UpdateOrderEntry(id, getOrderEntryDto);
             return Ok();
         }
 

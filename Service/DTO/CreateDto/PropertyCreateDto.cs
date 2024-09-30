@@ -6,7 +6,7 @@ public class PropertyCreateDto
 {
      
     public string PropertyName { get; set; } = null!;
-    public List<PaperDto> Papers { get; set; } = new List<PaperDto>();
+    public List<GetPaperDto> Papers { get; set; } = new List<GetPaperDto>();
 
     
 
@@ -16,7 +16,7 @@ public class PropertyCreateDto
         {
              
             PropertyName = propertyDto.PropertyName,
-            Papers = propertyDto.Papers.Select(PaperDto.ToEntity).ToList()
+            Papers = propertyDto.Papers.Select(GetPaperDto.ToEntity).ToList()
         };
     }
 }

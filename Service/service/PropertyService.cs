@@ -14,16 +14,16 @@ public class PropertyService : IPropertyService
         _context = context;
     }
 
-    public List<PropertyDto> GetAllProperties()
+    public List<GetPropertyDto> GetAllProperties()
     {
         var properties = _propertyRepo.GetAllProperties();
-        return properties.Select(PropertyDto.FromEntity).ToList();
+        return properties.Select(GetPropertyDto.FromEntity).ToList();
     }
 
-    public PropertyDto? GetPropertyById(int id)
+    public GetPropertyDto? GetPropertyById(int id)
     {
         var property = _propertyRepo.GetPropertyById(id);
-        return property != null ? PropertyDto.FromEntity(property) : null;
+        return property != null ? GetPropertyDto.FromEntity(property) : null;
     }
 
     public void CreateProperty(PropertyCreateDto propertyDto)
@@ -33,12 +33,12 @@ public class PropertyService : IPropertyService
         _context.SaveChanges();
     }
 
-    public void UpdateProperty(int id, PropertyDto propertyDto)
+    public void UpdateProperty(int id, GetPropertyDto getPropertyDto)
     {
         var property = _context.Properties.Find(id);
         if (property != null)
         {
-            property.PropertyName = propertyDto.PropertyName;
+            property.PropertyName = getPropertyDto.PropertyName;
             _context.SaveChanges();
         }
     }

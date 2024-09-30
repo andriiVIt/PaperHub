@@ -5,9 +5,9 @@ namespace Service;
 public class PaperPropertyCreateDto
 {
      
-    public PaperDto Paper { get; set; } = null!;
+    public GetPaperDto GetPaper { get; set; } = null!;
     
-    public PropertyDto Property { get; set; } = null!;
+    public GetPropertyDto GetProperty { get; set; } = null!;
 
      
 
@@ -16,9 +16,9 @@ public class PaperPropertyCreateDto
         return new PaperProperty
         {
              
-            Paper = PaperDto.ToEntity(paperPropertyDto.Paper),
+            Paper = GetPaperDto.ToEntity(paperPropertyDto.GetPaper),
              
-            Property = PropertyDto.ToEntity(paperPropertyDto.Property)
+            Property = GetPropertyDto.ToEntity(paperPropertyDto.GetProperty)
         };
     }
 }

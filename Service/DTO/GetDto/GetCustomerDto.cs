@@ -2,7 +2,7 @@ using DataAccess.Models;
 
 namespace Service;
 
-public class CustomerDto
+public class GetCustomerDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
@@ -10,9 +10,9 @@ public class CustomerDto
     public string? Phone { get; set; }
     public string? Email { get; set; }
 
-    public static CustomerDto FromEntity(Customer customer)
+    public static GetCustomerDto FromEntity(Customer customer)
     {
-        return new CustomerDto
+        return new GetCustomerDto
         {
             Id = customer.Id,
             Name = customer.Name,
@@ -22,15 +22,15 @@ public class CustomerDto
         };
     }
 
-    public static Customer ToEntity(CustomerDto customerDto)
+    public static Customer ToEntity(GetCustomerDto getCustomerDto)
     {
         return new Customer
         {
-            Id = customerDto.Id,
-            Name = customerDto.Name,
-            Address = customerDto.Address,
-            Phone = customerDto.Phone,
-            Email = customerDto.Email
+            Id = getCustomerDto.Id,
+            Name = getCustomerDto.Name,
+            Address = getCustomerDto.Address,
+            Phone = getCustomerDto.Phone,
+            Email = getCustomerDto.Email
         };
     }
     
