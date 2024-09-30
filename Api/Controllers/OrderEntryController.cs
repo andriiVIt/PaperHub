@@ -38,7 +38,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreateOrderEntry([FromBody] OrderEntryDto orderEntryDto)
+        public IActionResult CreateOrderEntry([FromBody] OrderEntryCreateDto orderEntryDto)
         {
             _service.CreateOrderEntry(orderEntryDto);
             return Ok();

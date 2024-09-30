@@ -30,9 +30,10 @@ public class CustomerService : ICustomerService
         return customer != null ? CustomerDto.FromEntity(customer) : null;
     }
 
-    public void CreateCustomer(CustomerDto customerDto)
+    public void CreateCustomer(CustomerCreateDto customerDto)
     {
-        var customer = CustomerDto.ToEntity(customerDto);
+        
+        var customer = CustomerCreateDto.ToEntity(customerDto);
         _context.Customers.Add(customer);
         _context.SaveChanges();
     }

@@ -38,7 +38,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreateProperty([FromBody] PropertyDto propertyDto)
+        public IActionResult CreateProperty([FromBody] PropertyCreateDto propertyDto)
         {
             _service.CreateProperty(propertyDto);
             return Ok();

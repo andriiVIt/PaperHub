@@ -38,7 +38,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePaperProperty([FromBody] PaperPropertyDto paperPropertyDto)
+        public IActionResult CreatePaperProperty([FromBody] PaperPropertyCreateDto paperPropertyDto)
         {
             _service.CreatePaperProperty(paperPropertyDto);
             return Ok();

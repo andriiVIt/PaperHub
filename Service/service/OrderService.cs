@@ -30,9 +30,9 @@ public class OrderService : IOrderService
         return order != null ? OrderDto.FromEntity(order) : null;
     }
 
-    public void CreateOrder(OrderDto orderDto)
+    public void CreateOrder(OrderCreateDto orderDto)
     {
-        var order = OrderDto.ToEntity(orderDto);
+        var order = OrderCreateDto.ToEntity(orderDto);
         _context.Orders.Add(order);
         _context.SaveChanges();
     }

@@ -1,7 +1,6 @@
 using DataAccess;
-using DataAccess.Models;
 
-namespace Service;
+namespace Service.service;
 
 public class PaperPropertyService : IPaperPropertyService
 {
@@ -26,9 +25,9 @@ public class PaperPropertyService : IPaperPropertyService
         return paperProperty != null ? PaperPropertyDto.FromEntity(paperProperty) : null;
     }
 
-    public void CreatePaperProperty(PaperPropertyDto paperPropertyDto)
+    public void CreatePaperProperty(PaperPropertyCreateDto paperPropertyDto)
     {
-        var paperProperty = PaperPropertyDto.ToEntity(paperPropertyDto);
+        var paperProperty = PaperPropertyCreateDto.ToEntity(paperPropertyDto);
         _context.PaperProperties.Add(paperProperty);
         _context.SaveChanges();
     }

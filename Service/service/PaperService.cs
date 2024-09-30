@@ -30,9 +30,9 @@ public class PaperService : IPaperService
         return paper != null ? PaperDto.FromEntity(paper) : null;
     }
 
-    public void CreatePaper(PaperDto paperDto)
+    public void CreatePaper(PaperCreateDto paperDto)
     {
-        var paper = PaperDto.ToEntity(paperDto);
+        var paper = PaperCreateDto.ToEntity(paperDto);
         _context.Papers.Add(paper);
         _context.SaveChanges();
     }

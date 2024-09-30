@@ -26,9 +26,9 @@ public class OrderEntryService : IOrderEntryService
         return orderEntry != null ? OrderEntryDto.FromEntity(orderEntry) : null;
     }
 
-    public void CreateOrderEntry(OrderEntryDto orderEntryDto)
+    public void CreateOrderEntry(OrderEntryCreateDto orderEntryDto)
     {
-        var orderEntry = OrderEntryDto.ToEntity(orderEntryDto);
+        var orderEntry = OrderEntryCreateDto.ToEntity(orderEntryDto);
         _context.OrderEntries.Add(orderEntry);
         _context.SaveChanges();
     }

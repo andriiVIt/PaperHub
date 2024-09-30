@@ -22,7 +22,9 @@ namespace DataAccess
         {
             // Configure Customer entity
             modelBuilder.Entity<Customer>(entity =>
+
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.HasKey(e => e.Id).HasName("customers_pkey");
             });
 

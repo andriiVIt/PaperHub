@@ -4,6 +4,8 @@ using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Service;
+using Service.service;
+
 namespace API;
 
 public class Program
@@ -13,7 +15,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         
         // Set the URL where the application will run
-        builder.WebHost.UseUrls("http://localhost:5000");
+        // builder.WebHost.UseUrls("http://localhost:5000");
 
         // Configure AppOptions from appsettings.json
         builder.Services.Configure<AppOptions>(builder.Configuration.GetSection("AppOptions"));

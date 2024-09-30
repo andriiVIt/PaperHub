@@ -26,9 +26,9 @@ public class PropertyService : IPropertyService
         return property != null ? PropertyDto.FromEntity(property) : null;
     }
 
-    public void CreateProperty(PropertyDto propertyDto)
+    public void CreateProperty(PropertyCreateDto propertyDto)
     {
-        var property = PropertyDto.ToEntity(propertyDto);
+        var property = PropertyCreateDto.ToEntity(propertyDto);
         _context.Properties.Add(property);
         _context.SaveChanges();
     }

@@ -38,7 +38,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreateCustomer([FromBody] CustomerDto customerDto)
+        public IActionResult CreateCustomer([FromBody] CustomerCreateDto customerDto)
         {
             _service.CreateCustomer(customerDto);
             return Ok();
