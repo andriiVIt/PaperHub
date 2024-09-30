@@ -2,7 +2,7 @@ using DataAccess.Models;
 
 namespace Service;
 
-public class PaperCreateDto
+public class CreatePaperDto
 {
      
     public string Name { get; set; } = null!;
@@ -11,14 +11,14 @@ public class PaperCreateDto
 
     
 
-    public static Paper ToEntity(PaperCreateDto paperDto)
+    public static Paper ToEntity(CreatePaperDto createPaperDto)
     {
         return new Paper
         {
             
-            Name = paperDto.Name,
-            Price = paperDto.Price,
-            Discontinued = paperDto.Discontinued
+            Name = createPaperDto.Name,
+            Price = createPaperDto.Price,
+            Discontinued = createPaperDto.Discontinued
         };
     }
 }

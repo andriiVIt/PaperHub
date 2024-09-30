@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Service;
+using Service.DTO.UpdateDto;
 
 namespace Api.Controllers
 {
@@ -38,16 +39,16 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePaper([FromBody] PaperCreateDto paperDto)
+        public IActionResult CreatePaper([FromBody] CreatePaperDto createPaperDto)
         {
-            _service.CreatePaper(paperDto);
+            _service.CreatePaper(createPaperDto);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePaper(int id, [FromBody] GetPaperDto getPaperDto)
+        public IActionResult UpdatePaper(int id, [FromBody] UpdatePaperDto updatePaperDto)
         {
-            _service.UpdatePaper(id, getPaperDto);
+            _service.UpdatePaper(id, updatePaperDto);
             return Ok();
         }
 

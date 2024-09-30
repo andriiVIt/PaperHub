@@ -1,4 +1,5 @@
 using DataAccess;
+using Service.DTO.UpdateDto;
 
 namespace Service.service;
 
@@ -25,11 +26,16 @@ public class PaperPropertyService : IPaperPropertyService
         return paperProperty != null ? GetPaperPropertyDto.FromEntity(paperProperty) : null;
     }
 
-    public void CreatePaperProperty(PaperPropertyCreateDto paperPropertyDto)
+    public void CreatePaperProperty(CreatePaperPropertyDto createPaperPropertyDto)
     {
-        var paperProperty = PaperPropertyCreateDto.ToEntity(paperPropertyDto);
+        var paperProperty = CreatePaperPropertyDto.ToEntity(createPaperPropertyDto);
         _context.PaperProperties.Add(paperProperty);
         _context.SaveChanges();
+    }
+
+    public void UpdatePaperProperty(UpdatePaperPropertyDto updatePaperPropertyDto)
+    {
+        throw new NotImplementedException();
     }
 
     public void DeletePaperProperty(int paperId, int propertyId)

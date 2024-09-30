@@ -22,16 +22,6 @@ public class GetCustomerDto
         };
     }
 
-    public static Customer ToEntity(GetCustomerDto getCustomerDto)
-    {
-        return new Customer
-        {
-            Id = getCustomerDto.Id,
-            Name = getCustomerDto.Name,
-            Address = getCustomerDto.Address,
-            Phone = getCustomerDto.Phone,
-            Email = getCustomerDto.Email
-        };
-    }
+     
     
 }

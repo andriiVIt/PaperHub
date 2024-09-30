@@ -20,14 +20,5 @@ public class GetPaperPropertyDto
         };
     }
 
-    public static PaperProperty ToEntity(GetPaperPropertyDto getPaperPropertyDto)
-    {
-        return new PaperProperty
-        {
-            PaperId = getPaperPropertyDto.PaperId,
-            Paper = GetPaperDto.ToEntity(getPaperPropertyDto.GetPaper),
-            PropertyId = getPaperPropertyDto.PropertyId,
-            Property = GetPropertyDto.ToEntity(getPaperPropertyDto.GetProperty)
-        };
-    }
+    
 }

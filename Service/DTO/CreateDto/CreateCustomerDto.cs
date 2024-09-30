@@ -4,7 +4,7 @@ using DataAccess.Models;
 
 namespace Service;
 
-public class CustomerCreateDto
+public class CreateCustomerDto
 {
      
     public string Name { get; set; } = null!;
@@ -14,15 +14,15 @@ public class CustomerCreateDto
 
     
 
-    public static Customer ToEntity(CustomerCreateDto customerDto)
+    public static Customer ToEntity(CreateCustomerDto createCustomerDto)
     {
         return new Customer
         {
             
-            Name = customerDto.Name,
-            Address = customerDto.Address,
-            Phone = customerDto.Phone,
-            Email = customerDto.Email
+            Name = createCustomerDto.Name,
+            Address = createCustomerDto.Address,
+            Phone = createCustomerDto.Phone,
+            Email = createCustomerDto.Email
         };
     }
     

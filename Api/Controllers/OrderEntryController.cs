@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Service;
+using Service.DTO.UpdateDto;
 
 namespace Api.Controllers
 {
@@ -38,16 +39,16 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreateOrderEntry([FromBody] OrderEntryCreateDto orderEntryDto)
+        public IActionResult CreateOrderEntry([FromBody] CreateOrderEntryDto createOrderEntryDto)
         {
-            _service.CreateOrderEntry(orderEntryDto);
+            _service.CreateOrderEntry(createOrderEntryDto);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateOrderEntry(int id, [FromBody] GetOrderEntryDto getOrderEntryDto)
+        public IActionResult UpdateOrderEntry(int id, [FromBody] UpdateOrderEntryDto updateOrderEntryDto)
         {
-            _service.UpdateOrderEntry(id, getOrderEntryDto);
+            _service.UpdateOrderEntry(id, updateOrderEntryDto);
             return Ok();
         }
 

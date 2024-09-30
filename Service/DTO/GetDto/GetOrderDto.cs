@@ -27,17 +27,5 @@ public class GetOrderDto
         };
     }
 
-    public static Order ToEntity(GetOrderDto getOrderDto)
-    {
-        return new Order
-        {
-            Id = getOrderDto.Id,
-            OrderDate = getOrderDto.OrderDate,
-            DeliveryDate = getOrderDto.DeliveryDate,
-            Status = getOrderDto.Status,
-            TotalAmount = getOrderDto.TotalAmount,
-            CustomerId = getOrderDto.CustomerId,
-           
-        };
-    }
+     
 }

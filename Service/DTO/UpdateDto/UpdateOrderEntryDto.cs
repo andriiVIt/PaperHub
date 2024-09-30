@@ -1,8 +1,8 @@
 using DataAccess.Models;
 
-namespace Service;
+namespace Service.DTO.UpdateDto;
 
-public class OrderEntryCreateDto
+public class UpdateOrderEntryDto
 {
     
     public int Quantity { get; set; }
@@ -12,14 +12,14 @@ public class OrderEntryCreateDto
     
      
 
-    public static OrderEntry ToEntity(OrderEntryCreateDto orderEntryDto)
+    public static OrderEntry ToEntity(UpdateOrderEntryDto updateOrderEntryDto)
     {
         return new OrderEntry
         {
             
-            Quantity = orderEntryDto.Quantity,
-            ProductId = orderEntryDto.ProductId,
-            OrderId = orderEntryDto.OrderId
+            Quantity = updateOrderEntryDto.Quantity,
+            ProductId = updateOrderEntryDto.ProductId,
+            OrderId = updateOrderEntryDto.OrderId
         };
     }
 }

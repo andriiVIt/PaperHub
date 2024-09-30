@@ -1,5 +1,6 @@
 using DataAccess;
 using DataAccess.Models;
+using Service.DTO.UpdateDto;
 
 namespace Service;
 
@@ -30,27 +31,41 @@ public class CustomerService : ICustomerService
         return customer != null ? GetCustomerDto.FromEntity(customer) : null;
     }
 
-    public void CreateCustomer(CustomerCreateDto customerDto)
+    public void CreateCustomer(CreateCustomerDto createCustomerDto)
     {
         
-        var customer = CustomerCreateDto.ToEntity(customerDto);
+        var customer = CreateCustomerDto.ToEntity(createCustomerDto);
         _context.Customers.Add(customer);
         _context.SaveChanges();
     }
 
-    public void UpdateCustomer(int id, GetCustomerDto getCustomerDto)
+    public void UpdateCustomer(int id, UpdateCustomerDto updateCustomerDto)
     {
+        if (updateCustomerDto == null)
+        {
+            throw new ArgumentNullException(nameof(updateCustomerDto), "Update data cannot be null");
+        }
+    
         var customer = _context.Customers.Find(id);
+    
         if (customer != null)
         {
-            customer.Name = getCustomerDto.Name;
-            customer.Address = getCustomerDto.Address;
-            customer.Phone = getCustomerDto.Phone;
-            customer.Email = getCustomerDto.Email;
+            // Alternatively, you can map the entire entity with ToEntity method, if it makes sense.
+             // var updatecustomer = UpdateCustomerDto.ToEntity(updateCustomerDto);
+        
+            customer.Name = updateCustomerDto.Name;
+            customer.Address = updateCustomerDto.Address;
+            customer.Phone = updateCustomerDto.Phone;
+            customer.Email = updateCustomerDto.Email;
+            _context.Customers.Update(customer);
             _context.SaveChanges();
         }
+        else
+        {
+            // Throw an exception or handle not found scenario.
+            throw new KeyNotFoundException($"Customer with ID {id} not found.");
+        }
     }
-
     public void DeleteCustomer(int id)
     {
         var customer = _context.Customers.Find(id);

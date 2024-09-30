@@ -22,14 +22,5 @@ public class GetOrderEntryDto
         };
     }
 
-    public static OrderEntry ToEntity(GetOrderEntryDto getOrderEntryDto)
-    {
-        return new OrderEntry
-        {
-            Id = getOrderEntryDto.Id,
-            Quantity = getOrderEntryDto.Quantity,
-            ProductId = getOrderEntryDto.ProductId,
-            OrderId = getOrderEntryDto.OrderId
-        };
-    }
+     
 }

@@ -1,4 +1,5 @@
 using DataAccess.Models;
+using Service.DTO.UpdateDto;
 
 namespace Service;
 
@@ -6,7 +7,7 @@ public interface ICustomerService
 {
     List<GetCustomerDto> GetAllCustomers(int limit, int startAt);
     GetCustomerDto? GetCustomerById(int id);
-    void CreateCustomer(CustomerCreateDto customerDto);
-    void UpdateCustomer(int id, GetCustomerDto getCustomerDto);
+    void CreateCustomer(CreateCustomerDto createCustomerDto);
+    void UpdateCustomer(int id, UpdateCustomerDto updateCustomerDto);
     void DeleteCustomer(int id);
 }

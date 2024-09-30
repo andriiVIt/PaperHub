@@ -1,5 +1,6 @@
 using DataAccess;
 using DataAccess.Models;
+using Service.DTO.UpdateDto;
 
 namespace Service;
 
@@ -30,22 +31,22 @@ public class OrderService : IOrderService
         return order != null ? GetOrderDto.FromEntity(order) : null;
     }
 
-    public void CreateOrder(OrderCreateDto orderDto)
+    public void CreateOrder(CreateOrderDto createOrderDto)
     {
-        var order = OrderCreateDto.ToEntity(orderDto);
+        var order = CreateOrderDto.ToEntity(createOrderDto);
         _context.Orders.Add(order);
         _context.SaveChanges();
     }
 
-    public void UpdateOrder(int id, GetOrderDto getOrderDto)
+    public void UpdateOrder(int id, UpdateOrderDto updateOrderDto)
     {
         var order = _context.Orders.Find(id);
         if (order != null)
         {
-            order.Status = getOrderDto.Status;
-            order.OrderDate = getOrderDto.OrderDate;
-            order.DeliveryDate = getOrderDto.DeliveryDate;
-            order.TotalAmount = getOrderDto.TotalAmount;
+            order.Status = updateOrderDto.Status;
+            order.OrderDate = updateOrderDto.OrderDate;
+            order.DeliveryDate = updateOrderDto.DeliveryDate;
+            order.TotalAmount = updateOrderDto.TotalAmount;
             _context.SaveChanges();
         }
     }

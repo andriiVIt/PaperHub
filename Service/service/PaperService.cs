@@ -1,5 +1,6 @@
 using DataAccess;
 using DataAccess.Models;
+using Service.DTO.UpdateDto;
 
 namespace Service;
 
@@ -30,21 +31,22 @@ public class PaperService : IPaperService
         return paper != null ? GetPaperDto.FromEntity(paper) : null;
     }
 
-    public void CreatePaper(PaperCreateDto paperDto)
+    public void CreatePaper(CreatePaperDto createPaperDto)
     {
-        var paper = PaperCreateDto.ToEntity(paperDto);
+        var paper = CreatePaperDto.ToEntity(createPaperDto);
         _context.Papers.Add(paper);
         _context.SaveChanges();
     }
 
-    public void UpdatePaper(int id, GetPaperDto getPaperDto)
+    public void UpdatePaper(int id, UpdatePaperDto updatePaperDto)
     {
+        
         var paper = _context.Papers.Find(id);
         if (paper != null)
         {
-            paper.Name = getPaperDto.Name;
-            paper.Price = getPaperDto.Price;
-            paper.Discontinued = getPaperDto.Discontinued;
+            paper.Name = updatePaperDto.Name;
+            paper.Price = updatePaperDto.Price;
+            paper.Discontinued = updatePaperDto.Discontinued;
             _context.SaveChanges();
         }
     }

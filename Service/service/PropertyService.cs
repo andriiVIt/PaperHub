@@ -1,5 +1,6 @@
 using DataAccess;
 using DataAccess.Models;
+using Service.DTO.UpdateDto;
 
 namespace Service;
 
@@ -26,19 +27,19 @@ public class PropertyService : IPropertyService
         return property != null ? GetPropertyDto.FromEntity(property) : null;
     }
 
-    public void CreateProperty(PropertyCreateDto propertyDto)
+    public void CreateProperty(CreatePropertyDto createPropertyDto)
     {
-        var property = PropertyCreateDto.ToEntity(propertyDto);
+        var property = CreatePropertyDto.ToEntity(createPropertyDto);
         _context.Properties.Add(property);
         _context.SaveChanges();
     }
 
-    public void UpdateProperty(int id, GetPropertyDto getPropertyDto)
+    public void UpdateProperty(int id,UpdatePropertyDto updatePropertyDto)
     {
         var property = _context.Properties.Find(id);
         if (property != null)
         {
-            property.PropertyName = getPropertyDto.PropertyName;
+            property.PropertyName = updatePropertyDto.PropertyName;
             _context.SaveChanges();
         }
     }

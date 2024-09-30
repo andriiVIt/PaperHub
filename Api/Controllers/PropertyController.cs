@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Service;
+using Service.DTO.UpdateDto;
 
 namespace Api.Controllers
 {
@@ -38,16 +39,16 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreateProperty([FromBody] PropertyCreateDto propertyDto)
+        public IActionResult CreateProperty([FromBody] CreatePropertyDto createPropertyDto)
         {
-            _service.CreateProperty(propertyDto);
+            _service.CreateProperty(createPropertyDto);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProperty(int id, [FromBody] GetPropertyDto getPropertyDto)
+        public IActionResult UpdateProperty(int id, [FromBody] UpdatePropertyDto updatePropertyDto)
         {
-            _service.UpdateProperty(id, getPropertyDto);
+            _service.UpdateProperty(id, updatePropertyDto);
             return Ok();
         }
 
