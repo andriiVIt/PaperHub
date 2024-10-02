@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{FA893050-9BDC-46E6-B9EE-B28082FC9873}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperHub.Tests", "PaperHub.Tests\PaperHub.Tests.csproj", "{2E814D91-7437-4954-BF5A-595E1B876D04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{FA893050-9BDC-46E6-B9EE-B28082FC9873}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA893050-9BDC-46E6-B9EE-B28082FC9873}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA893050-9BDC-46E6-B9EE-B28082FC9873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E814D91-7437-4954-BF5A-595E1B876D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E814D91-7437-4954-BF5A-595E1B876D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E814D91-7437-4954-BF5A-595E1B876D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E814D91-7437-4954-BF5A-595E1B876D04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
