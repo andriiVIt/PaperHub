@@ -34,7 +34,18 @@ public class PaperService : IPaperService
     public void CreatePaper(CreatePaperDto createPaperDto)
     {
         var paper = CreatePaperDto.ToEntity(createPaperDto);
-        _context.Papers.Add(paper);
+        var paperProperties = createPaperDto.PaperProperties;
+        var createdPaper = _context.Papers.Add(paper).Entity;
+        _context.SaveChanges();
+
+        
+        foreach (var paperProperty in paperProperties)
+        {
+            var paperPropertyEntity = CreatePaperPropertyDto.ToEntity(paperProperty);
+            paperPropertyEntity.PaperId = createdPaper.Id;
+            _context.PaperProperties.Add(paperPropertyEntity);
+        }
+        
         _context.SaveChanges();
     }
 

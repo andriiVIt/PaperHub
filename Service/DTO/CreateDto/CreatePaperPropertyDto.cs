@@ -4,21 +4,14 @@ namespace Service;
 
 public class CreatePaperPropertyDto
 {
-     
-    public GetPaperDto GetPaper { get; set; } = null!;
-    
-    public GetPropertyDto GetProperty { get; set; } = null!;
+    public int PropertyId { get; set; }  // Просто ідентифікатор існуючої властивості
 
-     
-
+    // Створення сутності з DTO, де передається лише ідентифікатор властивості
     public static PaperProperty ToEntity(CreatePaperPropertyDto createPaperPropertyDto)
     {
         return new PaperProperty
         {
-             
-            Paper = GetPaperDto.ToEntity(createPaperPropertyDto.GetPaper),
-             
-            Property = GetPropertyDto.ToEntity(createPaperPropertyDto.GetProperty)
+            PropertyId = createPaperPropertyDto.PropertyId
         };
     }
 }

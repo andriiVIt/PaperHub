@@ -31,6 +31,7 @@ namespace DataAccess
             // Configure Order entity
             modelBuilder.Entity<Order>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.HasKey(e => e.Id).HasName("orders_pkey");
 
                 entity.Property(e => e.OrderDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
@@ -44,6 +45,7 @@ namespace DataAccess
             // Configure OrderEntry entity
             modelBuilder.Entity<OrderEntry>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.HasKey(e => e.Id).HasName("order_entries_pkey");
 
                 entity.HasOne(d => d.Order)
@@ -58,6 +60,7 @@ namespace DataAccess
             // Configure Paper entity
             modelBuilder.Entity<Paper>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.HasKey(e => e.Id).HasName("paper_pkey");
 
                 entity.Property(e => e.Discontinued).HasDefaultValue(false);
@@ -88,6 +91,7 @@ namespace DataAccess
             // Configure Property entity
             modelBuilder.Entity<Property>(entity =>
             {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.HasKey(e => e.Id).HasName("properties_pkey");
             });
 

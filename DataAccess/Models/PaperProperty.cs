@@ -1,11 +1,21 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DataAccess.Models
 {
     public class PaperProperty
     {
+        [Column("paper_id")]
         public int PaperId { get; set; }
-        public Paper Paper { get; set; } = null!;
+    
+        [ForeignKey("PaperId")]
+        public Paper Paper { get; set; }
 
+        [Column("property_id")]
         public int PropertyId { get; set; }
-        public Property Property { get; set; } = null!;
+
+        [ForeignKey("PropertyId")]
+        public Property Property { get; set; }
+    
     }
+    
 }
