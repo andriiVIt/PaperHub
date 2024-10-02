@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PaperHub.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b95bfa784e3f556df46b73324a41bb10a79eaeb2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e7fc4b2be2c8c2667247e3a356876cbd6fcee27")]
 [assembly: System.Reflection.AssemblyProductAttribute("PaperHub.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PaperHub.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
