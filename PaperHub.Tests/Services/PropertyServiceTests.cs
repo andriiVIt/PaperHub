@@ -62,30 +62,22 @@ public class PropertyServiceTests
     [Fact]
     public void GetPropertyById_ReturnsCorrectProperty()
     {
-        // Arrange: очищення та створення бази даних
-        _dbContext.Database.EnsureDeleted();
-        _dbContext.Database.EnsureCreated();
-
-        // Створення властивостей
-        var property1 = new Property { Id = 1, PropertyName = "Size" };
-        var property2 = new Property { Id = 2, PropertyName = "Color" };
-
-        // Додавання властивостей до бази
+        // Arrange: Створюємо Property з унікальними Id
+        var property1 = new Property { Id = 1, PropertyName = "Property 1" };
+        var property2 = new Property { Id = 2, PropertyName = "Property 2" };
+    
         _dbContext.Properties.Add(property1);
         _dbContext.Properties.Add(property2);
         _dbContext.SaveChanges();
 
-        // Виведення для відладки
-        var allProperties = _dbContext.Properties.ToList();
-        Assert.NotEmpty(allProperties);  // Перевіряємо, чи дані присутні в базі
-
-        // Act: спроба знайти властивість з id = 1
+        // Act: Викликаємо сервіс для отримання Property за Id
         var result = _propertyService.GetPropertyById(1);
 
-        // Assert: перевірка результату
+        // Assert: Перевіряємо, що Property знайдено
         Assert.NotNull(result);
-        Assert.Equal("Size", result.PropertyName);
+        Assert.Equal("Property 1", result.PropertyName);
     }
+
 
 
     // Test for creating a property

@@ -58,30 +58,55 @@ namespace PaperHub.Tests.Services
         }
 
         [Fact]
-        public void CreateOrder_SuccessfullyAddsOrderAndOrderEntries()
+public void CreateOrder_SuccessfullyAddsOrderAndOrderEntries()
+{
+    // Arrange: create and add a customer and products to the in-memory database
+    var customer = new Customer { Id = 1, Name = "Test Customer" };
+    var product1 = new Paper { Id = 1, Name = "Product 1", Price = 10.0 };
+    var product2 = new Paper { Id = 2, Name = "Product 2", Price = 15.0 };
+    
+    _dbContext.Customers.Add(customer);
+    _dbContext.Papers.AddRange(product1, product2);
+    _dbContext.SaveChanges();
+
+    // Arrange: create a new order DTO with order entries
+    var createOrderDto = new CreateOrderDto
+    {
+        OrderDate = DateTime.Now,
+        Status = "Pending",
+        TotalAmount = 200,
+        CustomerId = customer.Id, // Use the existing customer
+        OrderEntries = new List<CreateOrderEntryDto>
         {
-            // Arrange: create a new order DTO with order entries
-            var createOrderDto = new CreateOrderDto
-            {
-                OrderDate = DateTime.Now,
-                Status = "Pending",
-                TotalAmount = 200,
-                CustomerId = 1,
-                OrderEntries = new System.Collections.Generic.List<CreateOrderEntryDto>
-                {
-                    new CreateOrderEntryDto { Quantity = 10, ProductId = 1 },
-                    new CreateOrderEntryDto { Quantity = 5, ProductId = 2 }
-                }
-            };
-
-            // Act: call the service method to create an order
-            _orderService.CreateOrder(createOrderDto);
-
-            // Assert: verify that the order and its entries were added
-            var createdOrder = _dbContext.Orders.FirstOrDefault(o => o.TotalAmount == 200);
-            Assert.NotNull(createdOrder); // Ensure the order was added
-            Assert.Equal(2, _dbContext.OrderEntries.Count()); // Ensure the order entries were added
+            new CreateOrderEntryDto { Quantity = 10, ProductId = product1.Id },
+            new CreateOrderEntryDto { Quantity = 5, ProductId = product2.Id }
         }
+    };
+
+    // Act: call the service method to create an order
+    _orderService.CreateOrder(createOrderDto);
+
+    // Assert: verify that the order and its entries were added
+    var createdOrder = _dbContext.Orders.FirstOrDefault(o => o.TotalAmount == 200);
+    Assert.NotNull(createdOrder); // Ensure the order was added
+    Assert.Equal(2, _dbContext.OrderEntries.Count()); // Ensure the order entries were added
+
+    // Additional assertions to check specific order entries
+    var orderEntries = _dbContext.OrderEntries.Where(e => e.OrderId == createdOrder.Id).ToList();
+    Assert.Equal(2, orderEntries.Count);
+
+    // Log actual quantities for debugging
+    var firstOrderEntry = orderEntries.FirstOrDefault(e => e.ProductId == product1.Id);
+    var secondOrderEntry = orderEntries.FirstOrDefault(e => e.ProductId == product2.Id);
+
+    Assert.NotNull(firstOrderEntry);
+    Assert.NotNull(secondOrderEntry);
+
+    Assert.Equal(10, firstOrderEntry.Quantity); // Expecting 10
+    Assert.Equal(5, secondOrderEntry.Quantity); // Expecting 5
+}
+
+
 
         [Fact]
         public void UpdateOrder_UpdatesExistingOrder()
