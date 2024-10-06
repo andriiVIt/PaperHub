@@ -10,6 +10,7 @@ namespace Api.Controllers
     public class PropertyController : ControllerBase
     {
         private readonly IPropertyService _service;
+        
         private readonly IOptionsMonitor<AppOptions> _options;
 
         public PropertyController(IPropertyService service, IOptionsMonitor<AppOptions> options)

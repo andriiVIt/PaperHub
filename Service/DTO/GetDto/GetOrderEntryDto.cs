@@ -10,7 +10,7 @@ public class GetOrderEntryDto
     public int? OrderId { get; set; }
     public GetPaperDto? Product { get; set; } // Nested DTO for product (Paper)
     
-    public static GetOrderEntryDto FromEntity(OrderEntry orderEntry)
+    public static GetOrderEntryDto  FromEntity(OrderEntry orderEntry)
     {
         return new GetOrderEntryDto
         {
