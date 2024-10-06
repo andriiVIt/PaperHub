@@ -48,12 +48,12 @@ public class PaperServiceTests : IDisposable
     public void GetPaperById_ReturnsCorrectPaper()
     {
         // Arrange
-        var paper = new Paper { Id = 1, Name = "Test Paper", Price = 5.0 };
+        var paper = new Paper { Name = "Test Paper", Price = 5.0 }; // Видаляємо встановлення Id
         _dbContext.Papers.Add(paper); // Додаємо запис до бази даних
         _dbContext.SaveChanges();
 
         // Act
-        var result = _paperService.GetPaperById(1);
+        var result = _paperService.GetPaperById(paper.Id); // Використовуємо Id, який згенерований автоматично
 
         // Assert
         Assert.NotNull(result);
@@ -65,9 +65,9 @@ public class PaperServiceTests : IDisposable
     {
         // Arrange
         _dbContext.Papers.AddRange(
-            new Paper { Id = 1, Name = "Paper1", Price = 5.0 },
-            new Paper { Id = 2, Name = "Paper2", Price = 7.0 },
-            new Paper { Id = 3, Name = "Paper3", Price = 9.0 }
+            new Paper { Name = "Paper1", Price = 5.0 },
+            new Paper { Name = "Paper2", Price = 7.0 },
+            new Paper { Name = "Paper3", Price = 9.0 }
         );
         _dbContext.SaveChanges();
 
@@ -84,7 +84,7 @@ public class PaperServiceTests : IDisposable
     public void UpdatePaper_UpdatesExistingPaper()
     {
         // Arrange
-        var paper = new Paper { Id = 1, Name = "Old Paper", Price = 10.0 };
+        var paper = new Paper { Name = "Old Paper", Price = 10.0 }; // Видаляємо встановлення Id
         _dbContext.Papers.Add(paper); // Додаємо початковий запис
         _dbContext.SaveChanges();
 
@@ -96,10 +96,10 @@ public class PaperServiceTests : IDisposable
         };
 
         // Act
-        _paperService.UpdatePaper(1, updateDto); // Оновлюємо вже існуючий запис
+        _paperService.UpdatePaper(paper.Id, updateDto); // Використовуємо Id, який згенерований автоматично
 
         // Assert
-        var updatedPaper = _dbContext.Papers.Find(1);
+        var updatedPaper = _dbContext.Papers.Find(paper.Id);
         Assert.NotNull(updatedPaper);
         Assert.Equal("Updated Paper", updatedPaper.Name);
         Assert.Equal(20.0, updatedPaper.Price);
@@ -109,15 +109,15 @@ public class PaperServiceTests : IDisposable
     public void DeletePaper_RemovesPaper()
     {
         // Arrange
-        var paper = new Paper { Id = 1, Name = "Test Paper" };
+        var paper = new Paper { Name = "Test Paper" }; // Видаляємо встановлення Id
         _dbContext.Papers.Add(paper);
         _dbContext.SaveChanges();
 
         // Act
-        _paperService.DeletePaper(1);
+        _paperService.DeletePaper(paper.Id); // Використовуємо Id, який згенерований автоматично
 
         // Assert
-        var deletedPaper = _dbContext.Papers.Find(1);
+        var deletedPaper = _dbContext.Papers.Find(paper.Id);
         Assert.Null(deletedPaper);
     }
 
