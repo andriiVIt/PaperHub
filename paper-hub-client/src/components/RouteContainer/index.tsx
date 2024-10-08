@@ -4,6 +4,7 @@ import {ROUTES} from "../../../utils";
 import Main from "../../pages/Main";
 import AdminDashboard from "../../pages/Admin/AdminDashboard";
 import CustomerSelection from "../../pages/Customer/CustomerSelection";
+import DashboardLayoutSlots from "../../pages/Customer/CustomerWindow";
 
 
 
@@ -19,7 +20,10 @@ export const RouteContainer: FC = () => {
         <Route path={ROUTES.MAIN} element={<Main/>}/>
         <Route path={ROUTES.ADMIN} element={<AdminDashboard/>}/>
         <Route path={ROUTES.CUSTOMER} element={<CustomerSelection/>}/>
+          <Route path={ROUTES.SINGLE_CUSTOMER} element={<DashboardLayoutSlots/>}/>
+
         <Route path={'*'} element={<Navigate to={ROUTES.MAIN} replace/>}/>
+
       </Routes>
     </Suspense>
   )

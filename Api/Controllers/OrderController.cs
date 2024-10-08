@@ -41,6 +41,7 @@ namespace Api.Controllers
         [Route("")]
         public IActionResult CreateOrder([FromBody] CreateOrderDto createOrderDto)
         {
+            Console.WriteLine("Customer ID: " + createOrderDto.CustomerId);
             _service.CreateOrder(createOrderDto);
             return Ok();
         }

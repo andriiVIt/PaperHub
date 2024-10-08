@@ -5,4 +5,5 @@ export const ROUTES = {
 
   ADMIN: '/admin',
   CUSTOMER: '/customer',
+  SINGLE_CUSTOMER:'/customer/:customerId',
 }

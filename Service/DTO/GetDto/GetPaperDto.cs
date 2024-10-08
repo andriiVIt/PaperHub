@@ -6,6 +6,7 @@ public class GetPaperDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
+    public int Stock { get; set; }
     public double Price { get; set; }
     public bool Discontinued { get; set; }
 
@@ -16,6 +17,7 @@ public class GetPaperDto
             Id = paper.Id,
             Name = paper.Name,
             Price = paper.Price,
+            Stock = paper.Stock,
             Discontinued = paper.Discontinued
         };
     }
@@ -27,6 +29,7 @@ public class GetPaperDto
             Id = getPaperDto.Id,
             Name = getPaperDto.Name,
             Price = getPaperDto.Price,
+            Stock = getPaperDto.Stock,
             Discontinued = getPaperDto.Discontinued
         };
     }

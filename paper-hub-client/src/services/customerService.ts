@@ -20,7 +20,7 @@ export const getCustomerList = async () => {
 
     return data
 }
-export const createCustomer = async (customerData: { name: string; email: string; phone: string; address: string }) => {
+export const createCustomer = async (customerData: { phone: string; name: string; email: string }) => {
     const response = await fetch('http://localhost:5183/api/Customer', {
         method: 'POST',
         credentials: 'same-origin',
@@ -30,15 +30,15 @@ export const createCustomer = async (customerData: { name: string; email: string
         body: JSON.stringify(customerData),
     });
 
-    // Намагайтеся обробити JSON тільки якщо відповідь містить вміст
+
     if (response.ok) {
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
             return await response.json();
         } else {
-            return {}; // Поверніть порожній об'єкт, якщо немає JSON
+            return {};
         }
     } else {
-        throw new Error('Не вдалося створити клієнта');
+        throw new Error('');
     }
 };
