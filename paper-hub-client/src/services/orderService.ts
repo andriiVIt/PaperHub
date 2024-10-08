@@ -80,3 +80,27 @@ export const getOrderHistory = async (customerId: number) => {
         throw new Error('Failed to fetch order history');
     }
 };
+export const getAllOrders = async () => {
+    const response = await fetch('http://localhost:5183/api/Order', {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    return await response.json();
+};
+
+export const updateOrderStatus = async (orderId: number, status: string) => {
+    const response = await fetch(`http://localhost:5183/api/Order/${orderId}`, {
+        method: "PUT",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            status: status
+        }),
+    });
+    return await response.json();
+};
