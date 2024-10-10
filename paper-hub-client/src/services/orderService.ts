@@ -1,8 +1,8 @@
 export const createOrder = async (orderData: {
-    order_date: string;
-    delivery_date: string;
-    total_amount: number;
-    customer_id: number;
+    // orderDate: string;
+    // deliveryDate: string;
+    totalAmount: number;
+    customerId: number;
     orderEntries: { quantity: number; productId: number }[];
     status: string;
 }) => {
@@ -16,17 +16,17 @@ export const createOrder = async (orderData: {
             body: JSON.stringify(orderData),
         });
 
-        console.log('Create Order Response:', response); // Логування відповіді
+        console.log('Create Order Response:', response);
 
         if (response.ok) {
             const contentType = response.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {
                 return await response.json();
             } else {
-                return {}; // Якщо відповідь не містить JSON
+                return {};
             }
         } else {
-            console.error('Failed to create order:', await response.text()); // Логування помилки
+            console.error('Failed to create order:', await response.text());
             throw new Error('Failed to create order');
         }
     } catch (error) {
@@ -46,22 +46,22 @@ export const createOrderEntry = async (orderEntryData: { orderId: number; produc
             body: JSON.stringify(orderEntryData),
         });
 
-        console.log('Create OrderEntry Response:', response); // Логування відповіді
-        const text = await response.text(); // Отримайте текстову відповідь
-        console.log('Response text:', text); // Лог текстової відповіді
+        console.log('Create OrderEntry Response:', response);
+        const text = await response.text();
+        console.log('Response text:', text);
 
         if (response.ok) {
             if (text) {
-                return JSON.parse(text); // Парсимо текст, якщо він не порожній
+                return JSON.parse(text);
             } else {
-                return {}; // Якщо відповідь порожня
+                return {};
             }
         } else {
-            console.error('Failed to create order entry:', text); // Логування помилки
+            console.error('Failed to create order entry:', text);
             throw new Error('Failed to create order entry');
         }
     } catch (error) {
-        console.error('Error during createOrderEntry:', error); // Логування будь-якої іншої помилки
+        console.error('Error during createOrderEntry:', error);
         throw error;
     }
 };
@@ -81,7 +81,7 @@ export const getOrderHistory = async (customerId: number) => {
     }
 };
 export const getAllOrders = async () => {
-    const response = await fetch('http://localhost:5183/api/Order', {
+    const response = await fetch('http://localhost:5183/api/Order?limit=25&startAt=0', {
         method: "GET",
         credentials: "same-origin",
         headers: {
@@ -102,5 +102,9 @@ export const updateOrderStatus = async (orderId: number, status: string) => {
             status: status
         }),
     });
-    return await response.json();
+    if (response.ok) {
+        return true;
+    } else {
+        throw new Error('Failed to update order status');
+    }
 };

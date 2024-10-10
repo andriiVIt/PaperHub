@@ -36,6 +36,7 @@ public class OrderService : IOrderService
         var order = CreateOrderDto.ToEntity(createOrderDto);
         var orderEntries = createOrderDto.OrderEntries;
         var createdOrder= _context.Orders.Add(order).Entity;
+        
         _context.SaveChanges();
         
         foreach (var orderEntry in orderEntries)

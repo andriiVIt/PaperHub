@@ -14,7 +14,7 @@ public class PaperServiceTests : IDisposable
 
     public PaperServiceTests()
     {
-        // Створення InMemory бази для тестування
+         
         var options = new DbContextOptionsBuilder<MyDbContext>()
             .UseInMemoryDatabase(databaseName: "TestDatabase")
             .Options;
@@ -48,12 +48,12 @@ public class PaperServiceTests : IDisposable
     public void GetPaperById_ReturnsCorrectPaper()
     {
         // Arrange
-        var paper = new Paper { Name = "Test Paper", Price = 5.0 }; // Видаляємо встановлення Id
-        _dbContext.Papers.Add(paper); // Додаємо запис до бази даних
+        var paper = new Paper { Name = "Test Paper", Price = 5.0 };  
+        _dbContext.Papers.Add(paper);  
         _dbContext.SaveChanges();
 
         // Act
-        var result = _paperService.GetPaperById(paper.Id); // Використовуємо Id, який згенерований автоматично
+        var result = _paperService.GetPaperById(paper.Id);  
 
         // Assert
         Assert.NotNull(result);
@@ -84,8 +84,8 @@ public class PaperServiceTests : IDisposable
     public void UpdatePaper_UpdatesExistingPaper()
     {
         // Arrange
-        var paper = new Paper { Name = "Old Paper", Price = 10.0 }; // Видаляємо встановлення Id
-        _dbContext.Papers.Add(paper); // Додаємо початковий запис
+        var paper = new Paper { Name = "Old Paper", Price = 10.0 };  
+        _dbContext.Papers.Add(paper);
         _dbContext.SaveChanges();
 
         var updateDto = new UpdatePaperDto
@@ -96,7 +96,7 @@ public class PaperServiceTests : IDisposable
         };
 
         // Act
-        _paperService.UpdatePaper(paper.Id, updateDto); // Використовуємо Id, який згенерований автоматично
+        _paperService.UpdatePaper(paper.Id, updateDto);  
 
         // Assert
         var updatedPaper = _dbContext.Papers.Find(paper.Id);
@@ -109,19 +109,19 @@ public class PaperServiceTests : IDisposable
     public void DeletePaper_RemovesPaper()
     {
         // Arrange
-        var paper = new Paper { Name = "Test Paper" }; // Видаляємо встановлення Id
+        var paper = new Paper { Name = "Test Paper" };  
         _dbContext.Papers.Add(paper);
         _dbContext.SaveChanges();
 
         // Act
-        _paperService.DeletePaper(paper.Id); // Використовуємо Id, який згенерований автоматично
+        _paperService.DeletePaper(paper.Id);  
 
         // Assert
         var deletedPaper = _dbContext.Papers.Find(paper.Id);
         Assert.Null(deletedPaper);
     }
 
-    // Використовуємо Dispose для очистки бази після кожного тесту
+     
     public void Dispose()
     {
         _dbContext.Database.EnsureDeleted(); 

@@ -92,9 +92,9 @@ function Products() {
 
 function Orders() {
     const [orders] = useAtom(CartAtoms);
-    const { customerId } = useParams(); // Отримуємо ID покупця з URL
+    const { customerId } = useParams();
 
-    // Функція для створення замовлення
+
     const handleCreateOrder = async () => {
         if (orders.length === 0) {
             alert('Your cart is empty!');
@@ -109,23 +109,23 @@ function Orders() {
                 productId: order.id
             }));
 
-            // Додайте лог для перевірки customerId і orderEntries
+
             console.log('Customer ID:', customerId);
             console.log('Order Entries:', orderEntries);
 
             const createdOrder = await createOrder({
-                order_date: new Date().toISOString(),
-                delivery_date: new Date().toISOString(),
+                // orderDate: new Date().toISOString(),
+                // deliveryDate: new Date().toISOString(),
                 status: 'Pending',
-                total_amount: totalAmount,
-                customer_id: parseInt(customerId as string, 10), // Переконайтесь, що це число
-                orderEntries: orderEntries // Передаємо коректний масив товарів
+                totalAmount: totalAmount,
+                customerId: parseInt(customerId as string, 10),
+                orderEntries: orderEntries
             });
 
-            // Додаємо кожен товар до замовлення (за потреби)
+
             for (const entry of orderEntries) {
                 await createOrderEntry({
-                    orderId: createdOrder.id, // Використовуємо ID створеного замовлення
+                    orderId: createdOrder.id,
                     productId: entry.productId,
                     quantity: entry.quantity
                 });
@@ -143,7 +143,7 @@ function Orders() {
             {orders.map((order) => (
                 <CartItem order={order} key={order.id} />
             ))}
-            {/* Додаємо кнопку для створення замовлення */}
+
             <Button variant="contained" color="primary" onClick={handleCreateOrder}>
                 Create Order
             </Button>
@@ -201,7 +201,7 @@ export default function DashboardLayoutSlots() {
 
     const getCustomerData = async () => {
         try {
-            // Логіка для отримання даних покупця
+
             console.log('Customer ID:', customerId);
         } catch (e) {
             console.error(e);

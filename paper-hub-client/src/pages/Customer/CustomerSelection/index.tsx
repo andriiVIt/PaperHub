@@ -8,9 +8,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography'; // Додано для назви магазину
-import { getCustomerList } from '../../../services/customerService.ts'; // Make sure path is correct
-import { createCustomer } from '../../../services/customerService.ts'; // Add a function to create customer
+import Typography from '@mui/material/Typography';
+import { getCustomerList } from '../../../services/customerService.ts';
+import { createCustomer } from '../../../services/customerService.ts';
 import { useNavigate } from 'react-router-dom'
 
 interface Customer {
@@ -81,7 +81,7 @@ export default function CustomerSelection() {
             justifyContent: 'center',
             height: '100vh',
             width: '100vw',
-            background: 'linear-gradient(to bottom right, #81D4FA, #2196F3)', // Градієнт як на стартовій сторінці
+            background: 'linear-gradient(to bottom right, #81D4FA, #2196F3)',
         }}>
             {/* Назва магазину */}
             <Typography
@@ -95,16 +95,16 @@ export default function CustomerSelection() {
                 Paper Hub
             </Typography>
 
-            {/* Основний вміст */}
+
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', width: '100%', maxWidth: '1200px' }}>
-                {/* Список клієнтів */}
+
                 <div style={{ flex: 1, marginRight: '30px' }}>
                     <h2>Customer List</h2>
-                    <TableContainer component={Paper} sx={{ backgroundColor: '#E3F2FD', boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)' }}> {/* Зміна фону таблиці */}
+                    <TableContainer component={Paper} sx={{ backgroundColor: '#E3F2FD', boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)' }}>
                         <Table sx={{ minWidth: 650 }} aria-label="customer table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell sx={{ backgroundColor: '#BBDEFB', fontWeight: 'bold' }}> {/* Фон заголовків таблиці */}
+                                    <TableCell sx={{ backgroundColor: '#BBDEFB', fontWeight: 'bold' }}>
                                         Name
                                     </TableCell>
                                     <TableCell sx={{ backgroundColor: '#BBDEFB', fontWeight: 'bold' }}>Email</TableCell>
@@ -117,7 +117,7 @@ export default function CustomerSelection() {
                                 {customers.map((customer) => (
                                     <TableRow
                                         key={customer.id}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, backgroundColor: '#E3F2FD' }} // Колір для кожного ряду таблиці
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, backgroundColor: '#E3F2FD' }}
                                     >
                                         <TableCell component="th" scope="row">
                                             {customer.name}
@@ -141,8 +141,8 @@ export default function CustomerSelection() {
                     </TableContainer>
                 </div>
 
-                {/* Форма для створення нового клієнта на правому боці */}
-                <div style={{ width: '400px', marginLeft: '20px' }}> {/* Відстань між таблицею та формою */}
+
+                <div style={{ width: '400px', marginLeft: '20px' }}>
                     <h2>Create New Customer</h2>
                     <form style={{ display: 'flex', flexDirection: 'column', gap: '16px', backgroundColor: 'white', padding: '20px', boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
                         <TextField
@@ -172,7 +172,7 @@ export default function CustomerSelection() {
                         <TextField
                             label="Address"
                             name="address"
-                            value={newCustomer.address} // Додаємо поле для адреси у формі
+                            value={newCustomer.address}
                             onChange={handleInputChange}
                             fullWidth
                             margin="normal"

@@ -28,30 +28,30 @@ public class PropertyServiceTests
     [Fact]
     public void GetAllProperties_ReturnsListOfProperties()
     {
-        // Arrange: очищення та створення бази даних
+         
         _dbContext.Database.EnsureDeleted();
         _dbContext.Database.EnsureCreated();
 
-        // Створення властивостей
+         
         var property1 = new Property { Id = 1, PropertyName = "Size" };
         var property2 = new Property { Id = 2, PropertyName = "Color" };
 
-        // Додавання властивостей до бази
+         
         _dbContext.Properties.Add(property1);
         _dbContext.Properties.Add(property2);
         _dbContext.SaveChanges();
 
-        // Перевірка наявності доданих властивостей
+         
         var allPropertiesInDb = _dbContext.Properties.ToList();
         Assert.NotNull(allPropertiesInDb);
-        Assert.NotEmpty(allPropertiesInDb); // Перевіряємо, що база не порожня
+        Assert.NotEmpty(allPropertiesInDb);  
 
-        // Act: отримання всіх властивостей через сервіс
+         
         var result = _propertyService.GetAllProperties();
 
-        // Assert: перевірка результату
-        Assert.NotNull(result); // Перевірка, що результат не null
-        Assert.Equal(2, result.Count); // Перевірка кількості властивостей
+         
+        Assert.NotNull(result);  
+        Assert.Equal(2, result.Count);  
         Assert.Contains(result, p => p.PropertyName == "Size");
         Assert.Contains(result, p => p.PropertyName == "Color");
     }
@@ -62,7 +62,7 @@ public class PropertyServiceTests
     [Fact]
     public void GetPropertyById_ReturnsCorrectProperty()
     {
-        // Arrange: Створюємо Property з унікальними Id
+         
         var property1 = new Property { Id = 1, PropertyName = "Property 1" };
         var property2 = new Property { Id = 2, PropertyName = "Property 2" };
     
@@ -70,10 +70,10 @@ public class PropertyServiceTests
         _dbContext.Properties.Add(property2);
         _dbContext.SaveChanges();
 
-        // Act: Викликаємо сервіс для отримання Property за Id
+         
         var result = _propertyService.GetPropertyById(1);
 
-        // Assert: Перевіряємо, що Property знайдено
+         
         Assert.NotNull(result);
         Assert.Equal("Property 1", result.PropertyName);
     }

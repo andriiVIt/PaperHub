@@ -26,10 +26,10 @@ function Main() {
                     fontSize: '8rem',
                     position: 'absolute',
                     top: '20px',
-                    color: '#000',  // Чорний колір для "Paper Hub"
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',  // Залишаємо тінь
-                    borderRadius: '17px',  // Заокруглені кути
-                    padding: '10px',  // Додаємо відступи для внутрішнього змісту
+                    color: '#000',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
+                    borderRadius: '17px',
+                    padding: '10px',
                 }}
             >
                 Paper Hub
@@ -44,7 +44,7 @@ function Main() {
                     height: '100%',
                 }}
             >
-                <Typography variant="h3" gutterBottom sx={{ color: '#000' }}>  {/* Чорний колір для "Select your role" */}
+                <Typography variant="h3" gutterBottom sx={{ color: '#000' }}>
                     Select your role
                 </Typography>
                 <Box

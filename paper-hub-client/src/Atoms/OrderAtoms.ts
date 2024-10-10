@@ -14,7 +14,7 @@ interface Order {
 
 
 
-// Створюємо атом для збереження ордера
+
 export const orderAtom = atom<Order>({
     order_date: new Date().toISOString(),
     delivery_date: new Date().toISOString(),

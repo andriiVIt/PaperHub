@@ -58,10 +58,11 @@ public class PaperService : IPaperService
             paper.Name = updatePaperDto.Name;
             paper.Price = updatePaperDto.Price;
             paper.Discontinued = updatePaperDto.Discontinued;
+            paper.Stock = updatePaperDto.Stock;
             _context.SaveChanges();
         }
     }
-
+    
     public void DeletePaper(int id)
     {
         var paper = _context.Papers.Find(id);

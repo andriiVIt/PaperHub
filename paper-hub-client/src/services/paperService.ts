@@ -1,6 +1,6 @@
 // paperService.ts
 export const getPaperList = async () => {
-    const response = await fetch('http://localhost:5183/api/Paper?limit=10&startAt=0', {
+    const response = await fetch('http://localhost:5183/api/Paper?limit=25&startAt=0', {
         method: "GET",
         credentials: "same-origin",
         headers: {
@@ -15,6 +15,7 @@ export const createPaper = async (paperData: {
     price: number;
     discontinued: boolean;
     paperProperties: { propertyId: number }[];
+    stock: number;
 }) => {
     try {
         const response = await fetch('http://localhost:5183/api/Paper', {
@@ -31,7 +32,7 @@ export const createPaper = async (paperData: {
             if (contentType && contentType.includes('application/json')) {
                 return await response.json();
             } else {
-                return {}; // Якщо відповідь не містить JSON
+                return {};
             }
         } else {
             throw new Error('Failed to create paper');
@@ -42,17 +43,33 @@ export const createPaper = async (paperData: {
     }
 };
 
-export const updateProductStock = async (productId: number, stock: number) => {
-    const response = await fetch(`http://localhost:5183/api/Paper/${productId}`, {
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    stock: number;
+    discontinued: boolean;
+}
+
+export const updateProductStock = async (product: Product) => {
+    const response = await fetch(`http://localhost:5183/api/Paper/${product.id}`, {
         method: "PUT",
         credentials: "same-origin",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            stock: stock
+            name: product.name,
+            price: product.price,
+            discontinued: product.discontinued,
+            stock: product.stock,
         }),
     });
-    return await response.json();
+    // return await response.json();\
+    if (response.ok) {
+        return true
+    } else {
+        throw new Error('Failed to update paper stock');
+    }
 };
 

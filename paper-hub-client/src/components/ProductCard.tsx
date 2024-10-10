@@ -39,12 +39,11 @@ export default function ProductCard({product}: {product: Product}) {
                         {product.name}
                     </Typography>
                     <Typography gutterBottom variant="h6" component="div">
-                        {product.price}
+                       Price: {product.price}$
                     </Typography>
                 </Stack>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    Pinstriped cornflower blue cotton blouse takes you on a walk to the park or
-                    just down the hall.
+
                 </Typography>
             </Box>
             <Divider />
@@ -54,9 +53,9 @@ export default function ProductCard({product}: {product: Product}) {
                         Select type
                     </Typography>
                     <Stack direction="row" spacing={1}>
-                        <Chip color="primary" label="Soft" size="small" />
-                        <Chip label="Medium" size="small" />
-                        <Chip label="Hard" size="small" />
+                        <Chip color="primary" label="Water-resistant" size="small" />
+                        <Chip label="Sturdy" size="small" />
+                        <Chip label="Eco-friendly" size="small" />
                     </Stack>
                 </Stack>
 
