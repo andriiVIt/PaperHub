@@ -16,7 +16,16 @@ public class Program
         
         // Set the URL where the application will run
         // builder.WebHost.UseUrls("http://localhost:5000");
-
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+        });
         // Configure AppOptions from appsettings.json
         builder.Services.Configure<AppOptions>(builder.Configuration.GetSection("AppOptions"));
 
@@ -75,9 +84,14 @@ public class Program
         app.UseStatusCodePages();
         app.UseCors(config => config.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());  // Set up CORS policy
         app.UseMiddleware<RequestResponseLoggingMiddleware>();  // Custom middleware for logging requests/responses
-
+        app.UseCors("AllowAllOrigins");
         // Map controllers for routing
         app.MapControllers();
+        using (var scope = app.Services.CreateScope())
+        {
+            // var context = scope.ServiceProvider.GetRequiredService<MyDbContext>();
+            //     .DataAccess
+        }
 
         // Start the application
         app.Run();
